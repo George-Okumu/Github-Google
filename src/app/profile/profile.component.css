@@ -1,0 +1,13 @@
+.form-group{
+    padding-top: 20px;
+}
+.container{
+    background-image: url("https://cdn.theatlantic.com/assets/media/img/photo/2020/03/photos-quiet-emptiness-under-corona/q01_1212943514-1/original.jpg");
+    background-position: cover;
+}
+.panel-footer{
+    font-size: 20px;
+    color: white;
+    padding-top: 10px;
+    text-align: center;
+}
