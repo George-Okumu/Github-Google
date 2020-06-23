@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { GitSearchService} from './git-search-service/git-search.service';
+import { GithubSearchService} from '../github-search-service/github-search.service';
 import { HttpClient } from '@angular/common/http';
 import { Users } from '../users';
 import { Repos } from '../repos';
@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  providers: [GithubSearchService]
 })
 export class ProfileComponent implements OnInit {
   user: Users;
@@ -18,26 +19,26 @@ export class ProfileComponent implements OnInit {
   userName: string;
 
 
-  constructor(private gitSearchService: GitSearchService) {
+  constructor(private githubSearchService: GithubSearchService) {
   }
  findName() {
 
-   this.gitSearchService.updateProfile(this.userName);
+   this.githubSearchService.updateProfile(this.userName);
 
-   this.gitSearchService.getUserInfo();
-   this.user = this.gitSearchService.user;
+   this.githubSearchService.getUserInfo();
+   this.user = this.githubSearchService.user;
    console.log(this.user);
 
-   this.gitSearchService.getRepoInfo(this.userName);
-   this.userRepos = this.gitSearchService.newRepo;
+   this.githubSearchService.getRepoInfo(this.userName);
+   this.userRepos = this.githubSearchService.newRepo;
  }
 
   ngOnInit() {
 
-    this.gitSearchService.getRepoInfo(this.userName);
-    this.repos = this.gitSearchService.repo;
-    this.gitSearchService.getUserInfo();
-    this.user = this.gitSearchService.user;
+    this.githubSearchService.getRepoInfo(this.userName);
+    this.repos = this.githubSearchService.repo;
+    this.githubSearchService.getUserInfo();
+    this.user = this.githubSearchService.user;
 
   }
 
